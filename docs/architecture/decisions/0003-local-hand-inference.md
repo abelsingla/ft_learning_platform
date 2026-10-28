@@ -15,6 +15,12 @@ Run landmark detection and gesture classification in a dedicated browser worker.
 Self-host pinned runtime, WASM, and model artifacts from an approved first-party
 origin. Do not upload, log, persist, or include camera frames in telemetry.
 
+The prototype uses `@tensorflow-models/hand-pose-detection` 2.0.1 and the
+TensorFlow.js WASM backend 4.22.0, both under Apache-2.0. It uses the official
+MediaPipe Hand Tracking lite models, also Apache-2.0, downloaded and pinned with
+SHA-256 checksums. MediaPipe Tasks is not used because its current privacy notice
+describes outbound usage metrics, which conflicts with the no-network boundary.
+
 The extension boundary exposes normalized landmarks and derived gesture events,
 not media streams. The first prototype supports up to two hands, 21 landmarks per
 hand, and a stable set of static gestures. Temporal and custom gestures remain
