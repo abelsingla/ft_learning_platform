@@ -5,6 +5,7 @@
 .env
 .env.*
 !.env.example
+.gh-auth/
 .DS_Store
 node_modules/
 dist/
