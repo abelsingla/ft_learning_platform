@@ -60,3 +60,4 @@
 - [ADR-0003: Perform hand inference exclusively on device](decisions/0003-local-hand-inference.md)
 - [ADR-0004: Separate mutable drafts from immutable submissions](decisions/0004-drafts-and-submissions.md)
 - [ADR-0005: Introduce a portable intermediate representation](decisions/0005-portable-program-ir.md)
+- [ADR-0006: Deliver learning materials through a versioned editor manifest](decisions/0006-learning-material-manifest.md)
