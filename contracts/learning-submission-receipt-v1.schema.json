@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://learning.fischertechnik.de/contracts/learning-submission-receipt-v1.schema.json",
+  "title": "Learning submission receipt v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["submissionId", "submittedAt"],
+  "properties": {
+    "submissionId": {"type": "string", "minLength": 1, "maxLength": 160},
+    "submittedAt": {"type": "string", "format": "date-time"},
+    "attemptNumber": {"type": "integer", "minimum": 1}
+  }
+}

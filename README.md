@@ -24,7 +24,9 @@ artifacts, and runtime assets must be served from an approved first-party origin
 
 ## Repository layout
 
+- `contracts/`: versioned submission and teacher-view JSON Schemas.
 - `docs/architecture/`: system architecture and decision records.
+- `docs/integration/`: editor, teacher, and LMS integration workflows.
 - `scratch-editor/`: local clone of the public editor fork (created separately).
 - Application and service packages will be added after the architecture baseline
   is reviewed.

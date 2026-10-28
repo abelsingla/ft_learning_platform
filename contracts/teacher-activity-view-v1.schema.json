@@ -1,0 +1,82 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://learning.fischertechnik.de/contracts/teacher-activity-view-v1.schema.json",
+  "title": "Teacher activity view v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "courseId", "activityId", "activityRevision", "generatedAt", "learners"],
+  "properties": {
+    "schemaVersion": {"const": 1},
+    "courseId": {"type": "string", "minLength": 1, "maxLength": 160},
+    "activityId": {"type": "string", "minLength": 1, "maxLength": 120},
+    "activityRevision": {"type": "string", "minLength": 1, "maxLength": 80},
+    "generatedAt": {"type": "string", "format": "date-time"},
+    "learners": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["learnerId", "displayName", "attemptId", "status", "exercises"],
+        "properties": {
+          "learnerId": {"type": "string", "minLength": 1, "maxLength": 160},
+          "displayName": {"type": ["string", "null"], "minLength": 1, "maxLength": 200},
+          "attemptId": {"type": ["string", "null"], "maxLength": 160},
+          "status": {"enum": ["not_started", "in_progress", "submitted", "reviewed"]},
+          "lastActivityAt": {"type": ["string", "null"], "format": "date-time"},
+          "exercises": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["exerciseId", "status", "latestSubmission"],
+              "properties": {
+                "exerciseId": {"type": "string", "minLength": 1, "maxLength": 80},
+                "status": {"enum": ["available", "in_progress", "completed", "locked"]},
+                "latestSubmission": {
+                  "oneOf": [
+                    {"type": "null"},
+                    {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "required": [
+                        "submissionId",
+                        "attemptNumber",
+                        "submittedAt",
+                        "artifactDownloadUrl",
+                        "artifactSha256",
+                        "review"
+                      ],
+                      "properties": {
+                        "submissionId": {"type": "string", "minLength": 1, "maxLength": 160},
+                        "attemptNumber": {"type": "integer", "minimum": 1},
+                        "submittedAt": {"type": "string", "format": "date-time"},
+                        "artifactDownloadUrl": {"type": "string", "format": "uri"},
+                        "artifactSha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+                        "review": {
+                          "oneOf": [
+                            {"type": "null"},
+                            {
+                              "type": "object",
+                              "additionalProperties": false,
+                              "required": ["scoreGiven", "scoreMaximum", "comment", "reviewedAt"],
+                              "properties": {
+                                "scoreGiven": {"type": "number", "minimum": 0},
+                                "scoreMaximum": {"type": "number", "exclusiveMinimum": 0},
+                                "comment": {"type": "string", "maxLength": 4000},
+                                "reviewedAt": {"type": "string", "format": "date-time"}
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

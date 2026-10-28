@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://learning.fischertechnik.de/contracts/learning-submission-v1.schema.json",
+  "title": "Learning submission metadata v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "clientSubmissionId",
+    "attemptId",
+    "activityId",
+    "activityRevision",
+    "exerciseId",
+    "projectId",
+    "createdAt",
+    "artifact",
+    "evidence"
+  ],
+  "properties": {
+    "schemaVersion": {"const": 1},
+    "clientSubmissionId": {"type": "string", "minLength": 1, "maxLength": 160},
+    "attemptId": {"type": "string", "minLength": 1, "maxLength": 160},
+    "activityId": {"type": "string", "minLength": 1, "maxLength": 120},
+    "activityRevision": {"type": "string", "minLength": 1, "maxLength": 80},
+    "exerciseId": {"type": "string", "minLength": 1, "maxLength": 80},
+    "projectId": {"type": ["string", "null"], "maxLength": 160},
+    "createdAt": {"type": "string", "format": "date-time"},
+    "artifact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["fileName", "mediaType", "byteLength", "sha256"],
+      "properties": {
+        "fileName": {"type": "string", "pattern": "^[A-Za-z0-9._-]+\\.sb3$", "maxLength": 170},
+        "mediaType": {"const": "application/x.scratch.sb3"},
+        "byteLength": {"type": "integer", "minimum": 1},
+        "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"}
+      }
+    },
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["exerciseStatuses"],
+      "properties": {
+        "exerciseStatuses": {
+          "type": "object",
+          "additionalProperties": {
+            "enum": ["available", "in_progress", "completed", "locked"]
+          }
+        }
+      }
+    }
+  }
+}

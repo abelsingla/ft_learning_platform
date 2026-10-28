@@ -62,3 +62,10 @@
 - [ADR-0005: Introduce a portable intermediate representation](decisions/0005-portable-program-ir.md)
 - [ADR-0006: Deliver learning materials through a versioned editor manifest](decisions/0006-learning-material-manifest.md)
 - [ADR-0007: Use a local SB3 recovery cache before remote draft persistence](decisions/0007-local-draft-recovery.md)
+
+## Integration contracts
+
+- [Teacher submission and review workflow](../integration/teacher-workflow.md)
+- [Learning submission metadata](../../contracts/learning-submission-v1.schema.json)
+- [Learning submission receipt](../../contracts/learning-submission-receipt-v1.schema.json)
+- [Teacher activity view](../../contracts/teacher-activity-view-v1.schema.json)
