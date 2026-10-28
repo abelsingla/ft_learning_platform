@@ -1,0 +1,11 @@
+# The editor is maintained as a separate upstream fork.
+/scratch-editor/
+
+# Local tooling and secrets.
+.env
+.env.*
+!.env.example
+.DS_Store
+node_modules/
+dist/
+coverage/
