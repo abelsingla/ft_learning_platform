@@ -1,0 +1,12 @@
+services:
+  mongo:
+    image: docker.io/library/mongo:8.0.34-noble
+    container_name: ft-learning-mongo
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:27018:27017"
+    volumes:
+      - ft-learning-mongo:/data/db
+
+volumes:
+  ft-learning-mongo:
